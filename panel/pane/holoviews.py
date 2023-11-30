@@ -490,7 +490,7 @@ class HoloViews(PaneBase):
             params = {}
             if self.theme is not None:
                 params['theme'] = self.theme
-            elif doc.theme and getattr(doc.theme, '_json') != {'attrs': {}}:
+            elif doc.theme and doc.theme._json != {'attrs': {}}:
                 params['theme'] = doc.theme
             elif self._design.theme.bokeh_theme:
                 params['theme'] = self._design.theme.bokeh_theme
@@ -888,7 +888,7 @@ def link_axes(root_view, root_model):
                 changed.append('y_range')
 
             # Reinitialize callbacks linked to replaced axes
-            subplots = getattr(p, 'subplots')
+            subplots = p.subplots
             if subplots:
                 plots = subplots.values()
             else:
